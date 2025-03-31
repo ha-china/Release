@@ -18,8 +18,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [rpi3_64,rpi4_64,rpi5_64,ova,generic_x86_64,generic_aarch64]
-        #target: [generic_aarch64,generic_x86_64]
+        #target: [rpi3_64,rpi4_64,rpi5_64,ova,generic_x86_64,generic_aarch64]
+        target: [generic_aarch64,generic_x86_64]
 
     steps:
     #- name: Checkout
@@ -83,6 +83,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.UPLOAD_TOKEN }}
+        repository: ha-china/Release  # 组织名/目标仓库
         file: operating-system/output/images/haos_*
         tag: ${{ env.HASSOS_VERSION }}
         overwrite: true
